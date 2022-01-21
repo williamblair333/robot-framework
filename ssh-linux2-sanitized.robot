@@ -1,6 +1,6 @@
 ################################################################################
 #
-# Run: robot -v host_ip:192.168.1.123 -v base_ip:192.168.1.111 -v username:linuxuser -v password:Letmein123$ -v dir:/home/linuxuser -v file:rsa_key ssh-linux2.robot
+# Run: robot -v host_ip:192.168.1.123 -v ip_host:192.168.1.111 -v username:linuxuser -v password:Letmein123$ -v dir:/home/linuxuser -v file:rsa_key ssh-linux2.robot
 # This is a demo of stuff you can do on a Linux server
 # This is raw, sanitized, not clean, not DRY and not finished.  Consider it as 
 # such and consider yourself warned - you'll need to do some work but the ideas
@@ -16,7 +16,7 @@ Library  Process
 
 *** Variables ***
 ${host_ip}		${EMPTY}
-${base_ip}      ${EMPTY}
+${ip_host}      ${EMPTY}
 ${username}		${EMPTY}
 ${password}		${EMPTY}
 ${dir}			${EMPTY}
@@ -95,24 +95,24 @@ Test rc Command
 
 Test SSH Hop Command
 
-	#${base_ip}=  Catenate  192.168.1.169
+	#${ip_host}=  Catenate  192.168.60.171
 	${ssh_username}=  Catenate  linuxuser
 	${ssh_password}=  Catenate  Letmein123$
-	#${ssh_connect}=  Catenate  ssh linuxuser@${base_ip}
-	${ssh_next_hop_server_connect}=  Catenate  ssh -i rsa_key root@${base_ip}
+	#${ssh_connect}=  Catenate  ssh linuxuser@${ip_host}
+	${ssh_next_hop_server_connect}=  Catenate  ssh -i rsa_key root@${ip_host}
 	
 ##################
 
 #Connect and pipe results to variables and console
 	#Write  ${ssh_connect}
 	Write  ${ssh_next_hop_server_connect}
-	#${ssh_response}=  Read Until  ${base_ip}
+	#${ssh_response}=  Read Until  ${ip_host}
 	${ssh_response}=  Read  delay=0.5s
 ##################
 
 #Connection fingerprint setup and prompt verification
 
-	${ssh_fingerprint_prompt}=  Catenate  The authenticity of host \'${base_ip}
+	${ssh_fingerprint_prompt}=  Catenate  The authenticity of host \'${ip_host}
 	#Log to Console  *
 	#Log to Console  Fingerprint prompt variable
 	#Log to Console  ${ssh_fingerprint_prompt}
@@ -130,7 +130,7 @@ Test SSH Hop Command
 ##################
 
 #Connection password setup and prompt verification
-	${ssh_password_prompt}=  Catenate  ${ssh_username}@${base_ip}
+	${ssh_password_prompt}=  Catenate  ${ssh_username}@${ip_host}
 
 	#Log to Console  *
 	#Log to Console  Password prompt variable
@@ -232,7 +232,7 @@ Test SSH Hop Command
 ##################
 
 #Connection password setup and prompt verification
-	${ssh_password_prompt}=  Catenate  ${ssh_username}@${base_ip}
+	${ssh_password_prompt}=  Catenate  ${ssh_username}@${ip_host}
 	#${ssh_password_prompt}=  Catenate  linuxuser@192.168.1.123
 	#Log to Console  *
 	#Log to Console  Password prompt variable
