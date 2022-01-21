@@ -44,7 +44,7 @@ XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\n\
     return filename
 
 @keyword('SSH Connect To Server')
-def connect_to_server(host, filename):
+def ssh_connect_to_server(host, filename):
     username = 'username_here'
     password = 'password_here'
     ssh_key = paramiko.RSAKey.from_private_key_file(filename, password=password)
@@ -56,7 +56,7 @@ def connect_to_server(host, filename):
     return client
 
 @keyword('SSH Kill Process')
-def process_kill_cli(ssh_connect):
+def process_kill_process(ssh_connect):
     command = 'bash -c "kill \$(ps |grep process_name | grep -v grep | sed \'s/ root.*//\')"'
     stdin, stdout, stderr = ssh_connect.exec_command(command)
     stdout.channel.set_combine_stderr(True)
@@ -72,5 +72,5 @@ def ssh_generate_file(ssh_connect):
     print(str(read))
 
 @keyword('SSH Close Connection')
-def close_ssh_client(ssh_connect):
+def ssh_close_connection(ssh_connect):
     ssh_connect.close()
