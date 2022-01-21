@@ -95,7 +95,7 @@ Test rc Command
 
 Test SSH Hop Command
 
-	#${base_ip}=  Catenate  192.168.60.171
+	#${base_ip}=  Catenate  192.168.1.169
 	${ssh_username}=  Catenate  linuxuser
 	${ssh_password}=  Catenate  Letmein123$
 	#${ssh_connect}=  Catenate  ssh linuxuser@${base_ip}
