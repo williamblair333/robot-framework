@@ -56,7 +56,7 @@ def connect_to_server(host, filename):
     return client
 
 @keyword('SSH Kill Process')
-def arm_kill_cli(ssh_connect):
+def process_kill_cli(ssh_connect):
     command = 'bash -c "kill \$(ps |grep process_name | grep -v grep | sed \'s/ root.*//\')"'
     stdin, stdout, stderr = ssh_connect.exec_command(command)
     stdout.channel.set_combine_stderr(True)
@@ -64,7 +64,7 @@ def arm_kill_cli(ssh_connect):
     print(str(read))
 
 @keyword('SSH Generate File')
-def arm_generate_file(ssh_connect):
+def ssh_generate_file(ssh_connect):
     command = 'bash -c "echo -n pipe_txtfile > /tmp/pipe_txtfile"'
     stdin, stdout, stderr = ssh_connect.exec_command(command)
     stdout.channel.set_combine_stderr(True)
