@@ -33,6 +33,6 @@ Invoke Tests
 
     ${filename}=  Setup Key File
     ${client}=  SSH Connect To Server   ${IP_HOST}  ${filename}
-    SSH Kill Process	${client}
-    SSH Generate File	${client}
-    SSH Close Connection	${client}
+    SSH Kill Process	  ${client}
+    SSH Generate File	  ${client}
+    SSH Close Connection  ${client}
