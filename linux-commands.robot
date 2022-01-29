@@ -18,7 +18,7 @@
 *** Settings ***
 Documentation  		Linux commands
 
-Library   			linux-commands.py
+Library   		linux-commands.py
 
 Test Setup  		Begin Test
 Test Teardown   	End Test
@@ -32,7 +32,7 @@ Invoke Tests
     [Documentation]  To demo using python functions in robot
 
     ${filename}=  Setup Key File
-	${client}=  SSH Connect To Server   ${IP_HOST}  ${filename}
-	SSH Kill Process	${client}
-	SSH Generate File	${client}
+    ${client}=  SSH Connect To Server   ${IP_HOST}  ${filename}
+    SSH Kill Process	${client}
+    SSH Generate File	${client}
     SSH Close Connection	${client}
